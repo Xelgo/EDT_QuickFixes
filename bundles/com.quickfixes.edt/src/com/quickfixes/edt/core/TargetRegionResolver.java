@@ -106,6 +106,18 @@ public final class TargetRegionResolver
         return section.getName(scriptVariant);
     }
 
+    /** @return the module type this resolver was built for. */
+    public ModuleType getModuleType()
+    {
+        return moduleType;
+    }
+
+    /** @return the script variant this resolver uses for localized region names. */
+    public ScriptVariant getScriptVariant()
+    {
+        return scriptVariant;
+    }
+
     private String resolveForForm(Method method)
     {
         List<EObject> containers = formEventHandlers == null ? null

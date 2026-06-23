@@ -107,6 +107,50 @@ public final class RegionCreator
         return candidates;
     }
 
+    /**
+     * @param document the editor document
+     * @param moduleType the module type
+     * @param scriptVariant the project's script variant (RU/EN)
+     * @param name exact region name to create
+     * @return a candidate for the missing region, or {@code null} if the region is not standard,
+     *         already exists, or its insertion point cannot be computed
+     */
+    public static Candidate candidate(IDocument document, ModuleType moduleType, ScriptVariant scriptVariant,
+        String name)
+    {
+        List<ModuleStructureSection> sections = ModuleStructure.sectionsFor(moduleType);
+        if (sections.isEmpty() || name == null)
+        {
+            return null;
+        }
+
+        List<String> lines = BslModuleText.readLines(document);
+        List<BslModuleText.Region> top = BslModuleText.topLevelRegions(BslModuleText.scanRegions(lines));
+        if (existsTop(top, name))
+        {
+            return null;
+        }
+
+        int sectionIndex = ModuleStructure.indexOfRegion(sections, name, scriptVariant);
+        if (sectionIndex < 0)
+        {
+            return null;
+        }
+
+        try
+        {
+            boolean ru = scriptVariant == ScriptVariant.RUSSIAN;
+            int insertOffset = insertionOffset(sectionIndex, sections, top, document, scriptVariant);
+            String block = (ru ? "#Область " : "#Region ") + name + "\n\n" //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                + (ru ? "#КонецОбласти" : "#EndRegion") + "\n\n"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            return new Candidate(name, insertOffset, block);
+        }
+        catch (BadLocationException e)
+        {
+            return null;
+        }
+    }
+
     private static void addCandidate(String name, int sectionIndex, List<ModuleStructureSection> sections,
         List<BslModuleText.Region> top, IDocument document, ScriptVariant scriptVariant, boolean ru,
         List<Candidate> candidates)

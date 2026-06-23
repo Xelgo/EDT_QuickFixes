@@ -11,7 +11,9 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.jface.text.IRewriteTarget;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -94,6 +96,14 @@ public class MoveMethodsToRegionsHandler extends AbstractHandler
 
         final BslEventsService eventsService = services.getBslEventsService();
         final Set<Integer> lines = flaggedLines;
+        MessageDialogWithToggle options = MessageDialogWithToggle.openOkCancelConfirm(shell, TITLE,
+            "Перенести методы в корректные области?", //$NON-NLS-1$
+            "Создавать отсутствующие области", true, null, null); //$NON-NLS-1$
+        if (options.getReturnCode() != Window.OK)
+        {
+            return null;
+        }
+        final boolean createMissingRegions = options.getToggleState();
 
         MethodRegionMover.Plan plan =
             document.readOnly(new IUnitOfWork<MethodRegionMover.Plan, XtextResource>()
@@ -108,7 +118,7 @@ public class MoveMethodsToRegionsHandler extends AbstractHandler
                         resolver = TargetRegionResolver.forModule(
                             (Module)resource.getContents().get(0), projectManager, eventsService);
                     }
-                    return MethodRegionMover.compute(document, resource, lines, resolver);
+                    return MethodRegionMover.compute(document, resource, lines, resolver, createMissingRegions);
                 }
             });
 
@@ -145,6 +155,7 @@ public class MoveMethodsToRegionsHandler extends AbstractHandler
 
         new ResultDialog(shell, "Перенос методов в корректные области", //$NON-NLS-1$
             "Перенесено: " + plan.result.getSuccesses().size() //$NON-NLS-1$
+                + ", создано областей: " + plan.createdRegionCount //$NON-NLS-1$
                 + ", не удалось: " + plan.result.getFailures().size(), //$NON-NLS-1$
             "Метод", "Область / причина", plan.result).open(); //$NON-NLS-1$ //$NON-NLS-2$
         return null;
