@@ -97,3 +97,9 @@ https://xelgo.github.io/EDT_QuickFixes/
 | Неэкспортный метод | `СлужебныеПроцедурыИФункции` |
 
 ---
+
+## Публикация на Infostart
+
+[![Infostart](https://infostart.ru/bitrix/templates/sandbox_empty/assets/tpl/abo/img/logo.svg)](https://infostart.ru/1c/articles/2724058/)
+
+- Статья: [EDT Extension Tweaks: плагины, контекст расширений и гибкая доработка 1C:EDT](https://infostart.ru/1c/articles/2724058/)
