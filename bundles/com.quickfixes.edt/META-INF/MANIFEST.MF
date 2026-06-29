@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Quick Fixes for 1C:EDT
 Bundle-Vendor: Quick Fixes
 Bundle-SymbolicName: com.quickfixes.edt;singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.1
 Bundle-Activator: com.quickfixes.edt.Activator
 Bundle-ActivationPolicy: lazy
 Automatic-Module-Name: com.quickfixes.edt

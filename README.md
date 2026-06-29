@@ -42,7 +42,7 @@ https://xelgo.github.io/EDT_QuickFixes/
 
 ### Через zip-архив
 
-1. Скачайте файл `release/com.quickfixes.edt-1.0.0-updatesite.zip`.
+1. Скачайте файл `release/com.quickfixes.edt-1.0.1-updatesite.zip`.
 2. В EDT откройте **Справка → Установить новое ПО…**
 3. Нажмите **Добавить… → Архив…** и укажите скачанный zip.
 4. Отметьте галочкой **Quick Fixes for 1C:EDT**, нажмите **Далее**, примите условия и **Готово**.

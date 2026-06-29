@@ -2,7 +2,7 @@
 <feature
     id="com.quickfixes.edt.feature"
     label="Quick Fixes for 1C:EDT"
-    version="1.0.0"
+    version="1.0.1"
     provider-name="Quick Fixes">
 
     <description>
