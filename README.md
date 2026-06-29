@@ -31,18 +31,18 @@
 Адрес update-site:
 
 ```text
-jar:https://github.com/Xelgo/EDT_QuickFixes/releases/latest/download/com.quickfixes.edt-1.0.1-updatesite.zip!/
+jar:https://github.com/Xelgo/EDT_QuickFixes/releases/latest/download/com.quickfixes.edt-updatesite.zip!/
 ```
 
 1. В EDT откройте **Справка → Установить новое ПО…**
 2. Нажмите **Добавить…**.
-3. В поле **Расположение** укажите `jar:https://github.com/Xelgo/EDT_QuickFixes/releases/latest/download/com.quickfixes.edt-1.0.1-updatesite.zip!/`.
+3. В поле **Расположение** укажите `jar:https://github.com/Xelgo/EDT_QuickFixes/releases/latest/download/com.quickfixes.edt-updatesite.zip!/`.
 4. Отметьте галочкой **Quick Fixes for 1C:EDT**, нажмите **Далее**, примите условия и **Готово**.
 5. Перезапустите EDT, когда он это предложит.
 
 ### Через zip-архив
 
-1. Скачайте архив `com.quickfixes.edt-1.0.1-updatesite.zip` со страницы [последнего релиза](https://github.com/Xelgo/EDT_QuickFixes/releases/latest).
+1. Скачайте архив `com.quickfixes.edt-updatesite.zip` со страницы [последнего релиза](https://github.com/Xelgo/EDT_QuickFixes/releases/latest).
 2. В EDT откройте **Справка → Установить новое ПО…**
 3. Нажмите **Добавить… → Архив…** и укажите скачанный zip.
 4. Отметьте галочкой **Quick Fixes for 1C:EDT**, нажмите **Далее**, примите условия и **Готово**.
